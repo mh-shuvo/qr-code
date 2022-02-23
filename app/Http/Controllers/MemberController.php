@@ -69,7 +69,7 @@ class MemberController extends Controller
             'member' =>$member
         ];
         $pdf = PDF::loadView('download', $data);
-        return $pdf->download('invoice.pdf');
+        return $pdf->download($member->name.'.pdf');
     }
 
     public function generateBase64Image($img){
