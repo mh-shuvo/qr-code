@@ -1,5 +1,6 @@
 <html lang="en">
 <head>
+<title>QR code generator</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
