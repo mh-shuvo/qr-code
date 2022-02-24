@@ -66,10 +66,9 @@
                             @endif
                         </div>
                         <div style="border: 1px solid rgb(222, 226, 230);" class="py-2">
-                            <div class="row">
-                                <div class="col-12 text-center fw-bold" style="font-size: 20px;">
-                                    Appliciant Member Detail Information
-                                </div>
+                            <div class="text-center mt-2 mb-2">
+                                <h2 class="text-success fw-bold">Verification Successfull !</h2>
+                                <h4 class="text-success">This Vaccination Certificate is Valid.</h4>
                             </div>
                         </div>
                         <div>

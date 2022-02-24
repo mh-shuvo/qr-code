@@ -33,8 +33,9 @@ class MemberController extends Controller
         ]);
         DB::beginTransaction();
         try {
+            $code = str_replace("/","",Hash::make(time()));
             $member = new Member();
-            $member->code = Hash::make(time());
+            $member->code = $code;
             $member->certificate_no = $request->certificate_no;
             $member->nid = $request->nid;
             $member->passport = $request->passport;
