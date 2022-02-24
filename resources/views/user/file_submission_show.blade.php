@@ -67,8 +67,7 @@
                         </div>
                         <div style="border: 1px solid rgb(222, 226, 230);" class="py-2">
                             <div class="text-center mt-2 mb-2">
-                                <h2 class="text-success fw-bold">Verification Successfull !</h2>
-                                <h4 class="text-success">This Vaccination Certificate is Valid.</h4>
+                                <h2> COVID-19 Vaccination Certificate</h2>
                             </div>
                         </div>
                         <div>
