@@ -109,9 +109,9 @@
 
     <main>
         <div class="main-title">
-            <h1> Appliciant Member Detail Information</h1>
+            <h1> COVID-19 Vaccination Certificate</h1>
         </div>
-        <table width="100%" cellspacing="0" class="InformationTable">
+        <table width="100%" cellspacing="0" class="InformationTable"  style="background-image: url('https://play-lh.googleusercontent.com/T4lbDfq91wNFLbTB_YaCafqJN1ucdBocu0BeEKSU1Gbn9Kkq9B-4AwMDiZRIMOOuawI'); opacity: 0.1; background-repeat: no-repeat; background-position: 25% 45%">
             <tr>
                 <th colspan="2" class="text-start" width="50%">Beneficiary Details</th>
                 <th colspan="2" class="text-end" width="50%">Vaccination Details</th>

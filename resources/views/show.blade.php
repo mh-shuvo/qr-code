@@ -34,20 +34,21 @@
                                     <img src="{{asset("/Mujib_100_Logo.png")}}" width="100" />
                                 </div>
                             </div>
-                            <div class="text-center mt-2 mb-2">
+                            <div class="text-center mt-2 mb-2 d-none">
                                 <div style="font-size: 30px; color: green; font-weight: bold;">
                                     {!! QrCode::size(300)->generate(route('get-member-data',[$member->code])); !!}
                                 </div>
                             </div>
                             @if(isset($page))
                             <div class="text-center mt-2 mb-2">
-                                <h2 class="text-success fw-bold">Verification Successfull</h2>
+                                <h2 class="text-success fw-bold">Verification Successfull !</h2>
+                                <h4 class="text-success">This Vaccination Certificate is Valid.</h4>
                             </div>
                             @endif
                         </div>
                         <div style="border: 1px solid rgb(222, 226, 230);" class="py-2">
-                            <div class="row cert-header-print">
-                                <div class="col-md-4 text-center px-4 px-md-0 offset-sm-4 fw-bold" style="font-size: 20px;">
+                            <div class="row">
+                                <div class="col-12 text-center fw-bold" style="font-size: 20px;">
                                     Appliciant Member Detail Information
                                 </div>
                             </div>
