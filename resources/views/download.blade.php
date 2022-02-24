@@ -26,7 +26,7 @@
         }
         /*qr start*/
         .qr{
-            width: 15%;
+            width: 30%;
             margin: 0px auto;
         }
         .qr img{

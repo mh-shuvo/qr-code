@@ -12,9 +12,11 @@
             <div class="col-md-12 p-sm-0">
                 <div class="d-flex justify-content-between">
                     <div class="col-md-12 p-sm-0">
+                        @if(!isset($page))
                         <div class="text-end mb-2 no-print">
                             <a class="btn btn-sm btn-success" href="{{route('print',[$member->code])}}">Print</a>
                         </div>
+                        @endif
                         <div style="border: 1px solid rgb(222, 226, 230);">
                             <div class="row cert-header-print m-0 mt-2">
                                 <div class="col-md-3 text-end d-none d-md-block d-print-inline-block">
@@ -34,9 +36,14 @@
                             </div>
                             <div class="text-center mt-2 mb-2">
                                 <div style="font-size: 30px; color: green; font-weight: bold;">
-                                    {!! QrCode::size(225)->generate(route('get-member-data',[$member->code])); !!}
+                                    {!! QrCode::size(300)->generate(route('get-member-data',[$member->code])); !!}
                                 </div>
                             </div>
+                            @if(isset($page))
+                            <div class="text-center mt-2 mb-2">
+                                <h2 class="text-success fw-bold">Verification Successfull</h2>
+                            </div>
+                            @endif
                         </div>
                         <div style="border: 1px solid rgb(222, 226, 230);" class="py-2">
                             <div class="row cert-header-print">

@@ -63,19 +63,19 @@ class MemberController extends Controller
     }
     public function printPdf($code){
         $member = Member::where('code',$code)->first();
-        $qrcode = base64_encode(QrCode::format('svg')->size(225)->errorCorrection('H')->generate(route('get-member-data',[$member->code])));
+        $qrcode = base64_encode(QrCode::format('svg')->size(300)->errorCorrection('H')->generate(route('scan',[$member->code])));
         $data = [
             'path' => $qrcode,
             'member' =>$member
         ];
         $pdf = PDF::loadView('download', $data);
-        return $pdf->download($member->name.'.pdf');
+        $pdfName = date('y_m_d',strtotime($member->created_at)).'-'.date('y_m_d',time());
+        return $pdf->download($pdfName.'.pdf');
     }
 
-    public function generateBase64Image($img){
-        $path = asset("/".$img);
-        $type = pathinfo($path, PATHINFO_EXTENSION);
-        $data = file_get_contents($path);
-        return base64_encode($data);
+    public function scanResult($code){
+        $member = Member::where('code',$code)->first();
+        $page = 'result';
+        return view('show',compact('member','page'));
     }
 }

@@ -17,3 +17,4 @@ Route::get('/',[\App\Http\Controllers\MemberController::class,'showMemberForm'])
 Route::post('/',[\App\Http\Controllers\MemberController::class,'submitMemberForm'])->name('submit-member-form');
 Route::get('/{code}',[\App\Http\Controllers\MemberController::class,'getMemberDataByCode'])->name('get-member-data');
 Route::get('/print/{code}',[\App\Http\Controllers\MemberController::class,'printPdf'])->name('print');
+Route::get('/scan-result/{code}',[\App\Http\Controllers\MemberController::class,'scanResult'])->name('scan');
