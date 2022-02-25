@@ -15,10 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[\App\Http\Controllers\AuthController::class,'showLoginForm'])->name('login');
 Route::post('/login',[\App\Http\Controllers\AuthController::class,'login'])->name('login.submit');
-Route::get('/signup',[\App\Http\Controllers\AuthController::class,'showSignupForm'])->name('signup');
-Route::post('/signup',[\App\Http\Controllers\AuthController::class,'signup'])->name('signup.submit');
-Route::get('/logout',[\App\Http\Controllers\AuthController::class,'logout'])->name('logout');
-
+Route::get('/scan-result/{code}',[\App\Http\Controllers\MemberController::class,'scanResult'])->name('scan');
 
 Route::group(['middleware'=>'user_middleware'],function (){
     Route::get('/user/dashboard',[\App\Http\Controllers\UserController::class,'index'])->name('user.home');
@@ -38,9 +35,14 @@ Route::group(['middleware'=>'admin'],function (){
 
     Route::get('/member/{code}/edit',[\App\Http\Controllers\MemberController::class,'memberEdit'])->name('member_edit');
     Route::post('/member/update',[\App\Http\Controllers\MemberController::class,'memberUpdate'])->name('member_update');
+
+
+    Route::get('/agent/signup',[\App\Http\Controllers\AuthController::class,'showSignupForm'])->name('signup');
+    Route::post('/agent/signup',[\App\Http\Controllers\AuthController::class,'signup'])->name('signup.submit');
+
 });
 
 Route::group(['middleware' => 'auth'],function (){
     Route::get('/print/{code}',[\App\Http\Controllers\MemberController::class,'printPdf'])->name('print');
+    Route::get('/auth/logout',[\App\Http\Controllers\AuthController::class,'logout'])->name('logout');
 });
-Route::get('/scan-result/{code}',[\App\Http\Controllers\MemberController::class,'scanResult'])->name('scan');

@@ -41,9 +41,9 @@
                         <div class="row">
                             <h3 class="text-left" style="font-weight: bold; margin-left: 10px;">Beneficiary Information</h3>
                             <div class="col-sm-12">
-                                <label for="certificate_no">Certificate No <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="certificate_no" name="certificate_no" placeholder="Certificate No" value="{{old('certificate_no')}}">
-                                @error('certificate_no')
+                                <label for="birth_certificate_no">Birth Certificate No <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="birth_certificate_no" name="birth_certificate_no" placeholder="Birth Certificate No" value="{{old('birth_certificate_no')}}">
+                                @error('birth_certificate_no')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>

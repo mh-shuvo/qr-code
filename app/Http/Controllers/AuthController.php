@@ -70,10 +70,8 @@ class AuthController extends Controller
             $user->save();
             DB::commit();
 
-            if(Auth::attempt(['email' => $user->email,'password' => $user->password])){
-                Session::flash('success','Agent Successfully Login');
-                return redirect()->route('user.home');
-            }
+            Session::flash('success','Agent Successfully Registered');
+            return redirect()->route('signup');
 
         }
         catch (\Exception $exception){

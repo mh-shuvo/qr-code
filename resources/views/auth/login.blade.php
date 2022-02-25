@@ -64,12 +64,6 @@
             @enderror
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-
-        <div class="checkbox mb-3">
-            <label>
-                <a href="{{route('signup')}}">Signup as a new user</a>
-            </label>
-        </div>
     </form>
 </main>
 

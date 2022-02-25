@@ -19,13 +19,13 @@ class MemberController extends Controller
     }
     public function submitMemberForm(Request $request){
         $this->validate($request,[
-            'certificate_no'=>'required',
+            'birth_certificate_no'=>'required',
             'name' => 'required',
             'dob' => 'required',
             'nationality' => 'required',
             'gender' => 'required',
         ],[
-            'certificate_no.required' => 'Certificate no field is required',
+            'birth_certificate_no.required' => 'Birth Certificate no field is required',
             'name.required' => 'Name field is required',
             'dob.required' => 'Date of Birth field is required',
             'nationality.required' => 'Nationality field is required',
@@ -33,10 +33,11 @@ class MemberController extends Controller
         ]);
         DB::beginTransaction();
         try {
-            $code = str_replace("/","",Hash::make(time()));
+           $code = $this->generateCode();
             $member = new Member();
             $member->code = $code;
-            $member->certificate_no = $request->certificate_no;
+            $member->certificate_no = Str::random(10);
+            $member->birth_certificate_no = $request->birth_certificate_no;
             $member->nid = $request->nid;
             $member->passport = $request->passport;
             $member->nationality = $request->nationality;
@@ -91,13 +92,13 @@ class MemberController extends Controller
     }
     public function memberUpdate(Request $request){
         $this->validate($request,[
-            'certificate_no'=>'required',
+            'birth_certificate_no'=>'required',
             'name' => 'required',
             'dob' => 'required',
             'nationality' => 'required',
             'gender' => 'required',
         ],[
-            'certificate_no.required' => 'Certificate no field is required',
+            'birth_certificate_no.required' => 'Birth Certificate no field is required',
             'name.required' => 'Name field is required',
             'dob.required' => 'Date of Birth field is required',
             'nationality.required' => 'Nationality field is required',
@@ -106,7 +107,7 @@ class MemberController extends Controller
         DB::beginTransaction();
         try {
             $member = Member::find($request->id);
-            $member->certificate_no = $request->certificate_no;
+            $member->birth_certificate_no = $request->birth_certificate_no;
             $member->nid = $request->nid;
             $member->passport = $request->passport;
             $member->nationality = $request->nationality;
@@ -130,5 +131,11 @@ class MemberController extends Controller
             Session::flash('error','Something went wrong. Please try again letter');
             return redirect()->back();
         }
+    }
+    private function generateCode(){
+        $url_length = strlen(route('login'));
+        $codeLength = 255-$url_length;
+        $code = str_replace("/","",Str::random($codeLength));
+        return $code;
     }
 }

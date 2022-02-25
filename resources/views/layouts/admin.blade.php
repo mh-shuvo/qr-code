@@ -55,6 +55,10 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Agent List
                     </a>
+                    <a class="nav-link" href="{{route('signup')}}">
+                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i></div>
+                        Add New Agent
+                    </a>
 
                     <a class="nav-link" href="{{route('agent_request')}}">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
