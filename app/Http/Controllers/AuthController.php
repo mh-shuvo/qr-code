@@ -41,7 +41,10 @@ class AuthController extends Controller
                 Auth::logout();
                 return redirect()->route('login');
             }
-
+        }
+        else{
+            Session::flash('error','Email and password do not match.');
+            return redirect()->back();
         }
     }
 
@@ -83,5 +86,31 @@ class AuthController extends Controller
     public function logout(){
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    public function showChangePasswordForm($id){
+        $user = User::find($id);
+        return view('auth.change_password',compact('user'));
+    }
+
+    public function submitChangePasswordForm(Request $request){
+        $this->validate($request,[
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+        ]);
+        DB::beginTransaction();
+        try {
+            $user = User::find($request->id);
+            $user->password = Hash::make($request->password);
+            $user->save();
+            DB::commit();
+            Session::flash('success','Password Successfully Changed');
+            return redirect()->back();
+        }
+        catch (\Exception $exception){
+            DB::rollBack();
+            Session::flash('error','Something went wrong. Please try again');
+            return redirect()->back();
+        }
     }
 }

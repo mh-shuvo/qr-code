@@ -1,19 +1,16 @@
 @extends('layouts.admin')
-@section('title','Add New Agent')
+@section('title','Change Password')
 @section('content')
     <div class="container-fluid px-4">
         <div class="row">
             <div class="col-sm-6 offset-sm-3">
                 <div class="card mb-4 mt-3">
-{{--                    <div class="card-header">--}}
-{{--                        <i class="fas fa-table me-1"></i>--}}
-{{--                        Create New Agent--}}
-{{--                    </div>--}}
                     <div class="card-body text-center">
-                        <form action="{{route('signup.submit')}}" method="post">
+                        <form action="{{route('submit_change_password')}}" method="post">
                             @csrf
+                            <input type="hidden" name="id" value="{{$user->id}}">
                             <img class="mb-4" src="{{asset('bd_logo.png')}}" height="100px">
-                            <h1 class="h3 mb-3 fw-normal">Add New Agent</h1>
+                            <h1 class="h3 mb-3 fw-normal">Change Password</h1>
 
                             @if(\Illuminate\Support\Facades\Session::has('error'))
                                 <div class="alert alert-danger alert-dismissible pb-2" role="alert">
@@ -25,27 +22,10 @@
                                     {{\Illuminate\Support\Facades\Session::get('success')}}
                                 </div>
                             @endif
-
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="">
-                                <label for="name">name</label>
-                                @error('name')
-                                <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
-
                             <div class="form-floating mt-2">
-                                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
+                                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" value="{{$user->email}}" readonly>
                                 <label for="floatingInput">Email address</label>
                                 @error('email')
-                                <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
-
-                            <div class="form-floating mt-2">
-                                <input type="text" class="form-control" id="phone" name="phone" placeholder="" min="11" max="13">
-                                <label for="phone">Phone</label>
-                                @error('phone')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
@@ -65,7 +45,7 @@
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
-                            <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+                            <button class="w-100 btn btn-lg btn-success" type="submit">Change Password</button>
                         </form>
                     </div>
                 </div>

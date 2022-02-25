@@ -18,6 +18,9 @@ class AgentController extends Controller
                 ->addColumn('created_at',function ($row){
                     return date('d M y',strtotime($row->created_at));
                 })
+                ->addColumn('action',function ($row){
+                    return '<a class="btn btn-success text-white btn-sm" href="'.route('show_change_password',[$row->id]).'">Change Password</a>';
+                })
                 ->make(true);
         }else{
             return view('admin.agent_list');

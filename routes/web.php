@@ -40,6 +40,9 @@ Route::group(['middleware'=>'admin'],function (){
     Route::get('/agent/signup',[\App\Http\Controllers\AuthController::class,'showSignupForm'])->name('signup');
     Route::post('/agent/signup',[\App\Http\Controllers\AuthController::class,'signup'])->name('signup.submit');
 
+    Route::get('/user/change-password/{id}',[\App\Http\Controllers\AuthController::class,'showChangePasswordForm'])->name('show_change_password');
+    Route::post('/user/change-password',[\App\Http\Controllers\AuthController::class,'submitChangePasswordForm'])->name('submit_change_password');
+
 });
 
 Route::group(['middleware' => 'auth'],function (){

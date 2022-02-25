@@ -16,6 +16,7 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->string('code');
+            $table->string('birth_certificate_no')->nullable();
             $table->string('certificate_no')->nullable();
             $table->string('nid')->nullable();
             $table->string('passport')->nullable();
@@ -30,7 +31,7 @@ class CreateMembersTable extends Migration
             $table->string('vaccination_center')->nullable();
             $table->string('vaccinated_by')->nullable();
             $table->integer('total_dose')->nullable();
-
+            $table->integer('created_by');
             $table->timestamps();
         });
     }
