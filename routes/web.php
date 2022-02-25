@@ -30,11 +30,11 @@ Route::group(['middleware'=>'user_middleware'],function (){
 });
 
 Route::group(['middleware'=>'admin'],function (){
-    Route::get('/home',[\App\Http\Controllers\AdminController::class,'index'])->name('admin.home');
+    Route::get('/admin/home',[\App\Http\Controllers\AdminController::class,'index'])->name('admin.home');
     Route::get('/agent/list',[\App\Http\Controllers\AgentController::class,'index'])->name('agent_list');
     Route::get('/agent/request',[\App\Http\Controllers\AgentController::class,'requestList'])->name('agent_request');
     Route::post('/agent/status-change',[\App\Http\Controllers\AgentController::class,'agentStatusChange'])->name('agent_status_change');
-    Route::get('file-submission',[\App\Http\Controllers\FileSubmissionController::class,'index'])->name('submission_list');
+    Route::get('/admin/file-submission',[\App\Http\Controllers\FileSubmissionController::class,'index'])->name('submission_list');
 
     Route::get('/member/{code}/edit',[\App\Http\Controllers\MemberController::class,'memberEdit'])->name('member_edit');
     Route::post('/member/update',[\App\Http\Controllers\MemberController::class,'memberUpdate'])->name('member_update');
