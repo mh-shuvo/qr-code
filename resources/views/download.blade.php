@@ -8,6 +8,7 @@
         body{
             background: #fff;
             margin: 0px;
+            font-family: 'nirmala, sans-serif';
         }
         .container{
             height: auto;
@@ -17,12 +18,12 @@
             border: none;
         }
         .p-1{
-          font-weight: bold;
-            font-size: 20px;
+            font-size: 15px;
+            font-family: "Times New Roman", Times, serif;
         }
         .p-2{
-          font-weight: bold;
-            font-size: 18px;
+            font-size: 15px;
+            font-family: "Times New Roman", Times, serif;
         }
         /*qr start*/
         .qr{
@@ -54,7 +55,7 @@
             border-collapse: collapse;
             border: 1px;
             border-style: dashed;
-            border-color: #EEEEEE;
+            border-color: #e3dcdc;
             padding: 10px;
         }
         table tr th{
@@ -81,6 +82,12 @@
             margin-left: 5%;
             margin-right: 5%;
         }
+        .text-end{
+            text-align: right;
+        }
+        .text-start{
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -89,90 +96,95 @@
 
         <table width="100%" cellspacing="0" class="headerTable">
             <tr>
-                <td>
-                    <img src="{{public_path().'/bd_logo.png'}}" style="height: 70px; width: 70px"/>
+                <td style="text-align: right;width: 20%;">
+                        <img src="{{public_path().'/bd_logo.png'}}" style="height: 70px; width: 70px;"/>
                 </td>
-                <td style="text-align: center;">
+                <td style="text-align: center;width: 60%;">
                     <p class="p-1">Government of the People's Republic of Bangladesh</p>
                     <p class="p-2">Ministry of Health and Family Welfare</p>
                 </td>
-                <td>
-                    <img src="{{public_path()."/Mujib_100_Logo.png"}}" style="height: 100px; width: 100px"/>
+                <td style="text-align: left;width: 20%;">
+                    <img src="{{public_path()."/Mujib_100_Logo.png"}}" style="height: 100px; width: 100px;float: left;"/>
                 </td>
             </tr>
         </table>
         <div class="qr">
-            <img src="data:image/png;base64,{{$path}}" alt=".." title=".."/>
+            <img src="{{public_path('/')}}code/{{$path}}" alt=".." title=".."/>
         </div>
     </header>
-
-
     <main>
         <div class="main-title">
-            <h1> COVID-19 Vaccination Certificate</h1>
+            <hr>
+            <p style="margin-top: -8px;margin-bottom: 2px; font-size: 16px;font-weight: bold;"> COVID-19 Vaccination Certificate <br>
+               <span style="font-weight: normal;"> (কোভিড-১৯ ভ্যাকসিন গ্রহণের সার্টিফিকেট)</span>
+            </p>
         </div>
-        <table width="100%" cellspacing="0" class="InformationTable"  style="background-image: url('https://play-lh.googleusercontent.com/T4lbDfq91wNFLbTB_YaCafqJN1ucdBocu0BeEKSU1Gbn9Kkq9B-4AwMDiZRIMOOuawI'); opacity: 0.1; background-repeat: no-repeat; background-position: 25% 45%">
+        <table width="100%" cellspacing="0" class="InformationTable"  style="background-image: url('https://play-lh.googleusercontent.com/T4lbDfq91wNFLbTB_YaCafqJN1ucdBocu0BeEKSU1Gbn9Kkq9B-4AwMDiZRIMOOuawI'); background-image-opacity: 0.1; background-repeat: no-repeat; background-position: 25% 45%">
             <tr>
-                <th colspan="2" class="text-start" width="50%">Beneficiary Details</th>
-                <th colspan="2" class="text-end" width="50%">Vaccination Details</th>
+                <th colspan="2" class="text-start" width="50%" style="font-size: 15px;text-align: left;">Beneficiary Details (টিকা গ্রহণকারীর বিবরণ)</th>
+                <th colspan="2" class="text-end" width="50%" style="font-size: 15px;text-align: left">Vaccination Details (টিকা প্রদানের বিবরণ)</th>
             </tr>
 
             <tr>
-                <td width="25%" class="text-end">Certificate No:</td>
+                <td width="25%" class="text-end">Certificate No: <br> সার্টিফিকেট নং-</td>
                 <td width="25%">{{$member->certificate_no}}</td>
-                <td width="25%" class="text-end">Date of Vaccination (Dose 1):</td>
+                <td width="25%" class="text-end">Date of Vaccination(Dose 1): <br>
+                টিকা প্রদানের তারিখ(ডোজ ১)-
+                </td>
                 <td width="25%"> {{!empty($member->date_of_dose_1) ? $member->date_of_dose_1 : "N/A"}}</td>
             </tr>
 
             <tr>
-                <td width="25%" class="text-end">NID Number:</td>
+                <td width="25%" class="text-end">NID Number: <br> জাতীয় পরিচয়পত্র নং-</td>
                 <td width="25%">{{!empty($member->nid) ? $member->nid : "N/A"}}</td>
-                <td width="25%" class="text-end">Name of Vaccine (Dose 1):</td>
+                <td width="25%" class="text-end">Name of Vaccine (Dose 1): <br>টিকার নাম (ডোজ ১)</td>
                 <td width="25%"> {{!empty($member->name_of_dose_1) ? $member->name_of_dose_1 : "N/A"}}</td>
             </tr>
 
             <tr>
-                <td width="25%" class="text-end">Passport No:</td>
+                <td width="25%" class="text-end">Passport No:<br> পার্সপোর্ট নং-</td>
                 <td width="25%">  {{!empty($member->nid) ? $member->passport : "N/A"}} </td>
-                <td width="25%" class="text-end">Date of Vaccination (Dose 2):</td>
+                <td width="25%" class="text-end">Date of Vaccination(Dose 2): <br>টিকা প্রদানের তারিখ(ডোজ ২)- </td>
                 <td width="25%">{{!empty($member->date_of_dose_2) ? $member->date_of_dose_2 : "N/A"}}</td>
             </tr>
 
             <tr>
-                <td width="25%" class="text-end">Country/Nationality:</td>
+                <td width="25%" class="text-end">Country/Nationality:<br> দেশ/জাতীয়তাঃ</td>
                 <td width="25%"> {{$member->nationality}}</td>
-                <td width="25%" class="text-end">Name of Vaccine (Dose 2):</td>
-                <td width="25%"> {{!empty($member->name_of_dose_2) ? $member->name_of_dose_2 : "N/A"}}</td>
+                <td width="30%" class="text-end">Name of Vaccine (Dose 2): <br>টিকার নাম (ডোজ ২)</td>
+                <td width="20%"> {{!empty($member->name_of_dose_2) ? $member->name_of_dose_2 : "N/A"}}</td>
             </tr>
 
             <tr>
-                <td width="25%" class="text-end">Name:</td>
+                <td width="25%" class="text-end">Name: <br> নামঃ</td>
                 <td width="25%">  {{$member->name}}</td>
-                <td width="25%" class="text-end" rowspan="2">Vaccination Center:</td>
-                <td width="25%" rowspan="2"> {{!empty($member->vaccination_center) ? $member->vaccination_center : "N/A"}}</td>
+                <td width="30%" class="text-end" rowspan="2">Vaccination Center: <br>টিকা প্রদানের কেন্দ্রঃ</td>
+                <td width="20%" rowspan="2"> {{!empty($member->vaccination_center) ? $member->vaccination_center : "N/A"}}</td>
             </tr>
 
             <tr>
-                <td width="25%" class="text-end">Date of Birth:</td>
+                <td width="25%" class="text-end">Date of Birth: <br> জন্ম তারিখঃ</td>
                 <td width="25%"> {{$member->dob}}</td>
             </tr>
 
             <tr>
-                <td width="25%" class="text-end">Gender:</td>
+                <td width="25%" class="text-end">Gender: <br> লিঙ্গ </td>
                 <td width="25%">{{ucfirst($member->gender)}}</td>
-                <td width="25%" class="text-end">Vaccinated By:</td>
-                <td width="25%"> {{!empty($member->vaccinated_by) ? $member->vaccinated_by : "N/A"}}</td>
+                <td width="30%" class="text-end">Vaccinated By: <br>টিকা প্রদানকারীঃ </td>
+                <td width="20%"> {{!empty($member->vaccinated_by) ? $member->vaccinated_by : "N/A"}}</td>
             </tr>
 
             <tr>
-                <td width="100%" class="text-center" colspan="4">
-                    To verify this certificate please visit www.surokkha.gov.bd/verify or scan the QR code.
+                <td width="100%" class="text-center" colspan="4" style="border-bottom: 1px solid #e3dcdc;border-left: 1px solid #e3dcdc;border-right: 1px solid #e3dcdc;">
+                    To verify this certificate please visit www.surokkha.gov.bd/verify or scan the QR code. <br>
+                    ( এই সার্টিফিকেটটি যাচাই করার জন্য www.surokkha.gov.bd/verify ভিজিট অথবা QR কোডটি স্ক্যান করুন )
                 </td>
             </tr>
 
             <tr>
-                <td width="100%" class="text-center" colspan="4">
-                    For any further assistance, please visit www.dghs.gov.bd or e-mail: info@dghs.gov.bd
+                <td width="100%" class="text-center" colspan="4" style="border: 1px solid #e3dcdc;">
+                    For any further assistance, please visit www.dghs.gov.bd or e-mail: info@dghs.gov.bd <br>
+                    (প্রয়োজনে www.dghs.gov.bd ওয়েবসাইটে ভিজিট করুন অথবা ইমেইল করুনঃ info@dghs.gov.bd)
                 </td>
             </tr>
 
@@ -187,15 +199,15 @@
 </div>
 <div class="">
     <div class="certificate">
-        <table width="100%" style="border: 1px solid green">
+        <table width="100%" style="border: 1px solid green;">
             <tr>
                 <td style="border-right: 1px solid green;width: 48%">
                     <table width="100%" style="padding: 1px; border: none" class="certificateInnerTable">
                         <tr>
-                            <td colspan="2" style="text-align: center"><img src="{{public_path().'/bd_logo.png'}}" style="height: 70px; width: 70px"/></td>
+                            <td colspan="2" style="text-align: center"><img src="{{public_path().'/bd_logo.png'}}" style="height: 60px; width: 60px"/></td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="text-align: center; font-size: 12px; font-weight: bold">
+                            <td colspan="2" style="text-align: center; font-size: 13px;">
                                 Government of the People's Republic of Bangladesh <br>
                                 Ministry of Health and Family Welfare
                             </td>
@@ -215,66 +227,66 @@
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: center">
-                                <img src="data:image/png;base64,{{$path}}" style="height: 100px; width: 100px"/>
+                                <img src="{{public_path('/')}}code/{{$path}}" style="height: 100px; width: 100px"/>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="text-align: center;font-weight: bold;font-size: 17px">
+                            <td colspan="2" style="text-align: center;font-weight: bold;font-size: 17px;color: black">
                                 {{$member->name}}
                             </td>
                         </tr>
                         <tr style="background: green;color: white">
-                            <td style="text-align: right;">
+                            <td style="text-align: right;color: white">
                                 NID No
                             </td>
-                            <td style="text-align: left">
+                            <td style="text-align: left;color: white">
                                 {{!empty($member->nid) ? $member->nid : "N/A"}}
                             </td>
                         </tr>
                         <tr style="background: green;color: white">
-                            <td style="text-align: right;">
+                            <td style="text-align: right;color: white">
                                 Passport No
                             </td>
-                            <td style="text-align: left">
+                            <td style="text-align: left;color: white">
                                 {{!empty($member->passport) ? $member->passport : "N/A"}}
                             </td>
                         </tr>
                         <tr style="background: green;color: white">
-                            <td style="text-align: right;">
+                            <td style="text-align: right;color: white">
                                 Nationality
                             </td>
-                            <td style="text-align: left">{{$member->nationality}}</td>
+                            <td style="text-align: left;color: white">{{$member->nationality}}</td>
                         </tr>
                         <tr style="background: green;color: white">
-                            <td style="text-align: right;">Vaccine Name</td>
-                            <td style="text-align: left">
+                            <td style="text-align: right;color: white">Vaccine Name</td>
+                            <td style="text-align: left;color: white">
                                 {{!empty($member->name_of_dose_1) ? $member->name_of_dose_1 : ""}} {{!empty($member->name_of_dose_1) ? " - ".$member->name_of_dose_1 : ""}}
                             </td>
                         </tr>
                         <tr style="background: green;color: white">
-                            <td style="text-align: right;">
+                            <td style="text-align: right;color: white">
                                 Total Dose
                             </td>
-                            <td style="text-align: left">{{$member->total_dose}}</td>
+                            <td style="text-align: left;color: white">{{$member->total_dose}}</td>
                         </tr>
                     </table>
                 </td>
-                <td width="5%"></td>
-                <td style="border-left: 1px solid green;width: 47%">
+                <td width="3%"></td>
+                <td style="border-left: 1px solid green;width: 49%">
                     <table width="100%" style="padding: 1px; border: none" class="certificateInnerTable">
                         <tr>
                             <td colspan="2" style="height: 70px"></td>
                         </tr>
-                        <tr style="border-bottom: 2px solid red;">
+                        <tr style="border: 5px solid greenyellow;">
                             <td colspan="2">
-                                <hr style="width: 100%; border: 1px solid green;">
+                                <hr style="width: 100%; color: green;">
                             </td>
                         </tr>
                         <tr style="border-bottom: 2px solid red;">
 
                         </tr>
                         <tr style="border-top: 1px solid green;">
-                            <td colspan="2" style="text-align: center; font-size: 17px;">
+                            <td colspan="2" style="text-align: center; font-size: 18px;">
                                To Verify this certificate please <br>
                                 visit <b>www.surokkha.gov.bd/verify</b> <br>
                                 <span style="font-size: 12px">Or</span> <br>
@@ -284,11 +296,11 @@
 
                         <tr>
                             <td colspan="2" style="text-align: center">
-                                <hr style="width: 50px;">
+                                <hr style="width: 100%; color: green;">
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="text-align: center;font-weight: bold;font-size: 17px">
+                            <td colspan="2" style="text-align: center;font-size: 18px">
                                 For any further assistance, please <br>
                                 visit www.dghs.gov.bd or
                                 email: info@dghs.gov.bd
@@ -296,12 +308,12 @@
                         </tr>
                         <tr style="border-bottom: 2px solid red;">
                             <td colspan="2">
-                                <hr style="width: 100%; border: 1px solid green;">
+                                <hr style="width: 100%; color: green;">
                             </td>
                         </tr>
                         <tr style="border-bottom: 2px solid red;">
                             <td colspan="2" style="text-align: center">
-                                <img src="{{public_path().'/certificate_footer.PNG'}}" style="height: 80px; width: 80%;" alt="">
+                                <img src="{{public_path().'/certificate_footer.PNG'}}" style="height: 50px; width: 150px;" alt="">
                             </td>
                         </tr>
                         <tr>

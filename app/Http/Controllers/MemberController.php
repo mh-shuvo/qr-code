@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use PDF;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Mpdf\QrCode\QrCode as QrCode2;
+use Mpdf\QrCode\Output;
 
 class MemberController extends Controller
 {
@@ -69,16 +71,45 @@ class MemberController extends Controller
         return view('show',compact('member'));
     }
     public function printPdf($code){
+
+        $this->deleteAllFilesofByPath('code/');
+
         $member = Member::where('code',$code)->first();
-        $qrcode = base64_encode(QrCode::format('svg')->size(300)->errorCorrection('H')->generate(route('scan',[$member->code])));
+        $qrCode = new QrCode2(route('scan',[$member->code]));
+        $output = new Output\Png();
+        $data = $output->output($qrCode, 300, [255, 255, 255], [0, 0, 0]);
+        $qr_filename = time().'.png';
+        file_put_contents('code/'.$qr_filename, $data);
+
+
+//        $qrcode = base64_encode(QrCode::format('svg')->size(300)->errorCorrection('H')->generate(route('scan',[$member->code])));
+        $qrcode = $qr_filename;
         $data = [
             'path' => $qrcode,
-            'member' =>$member
+            'member' =>$member,
+            'file' => "1646067064"
         ];
+//        echo $html;
+//        exit;
         $pdf = PDF::loadView('download', $data);
 
         $pdfName = date('y_m_d',strtotime($member->created_at)).'-'.date('y_m_d',time());
         return $pdf->download($pdfName.'.pdf');
+    }
+
+    // function to delete all files and subfolders from folder
+    private function deleteAllFilesofByPath($dir, $remove = false) {
+        $structure = glob(rtrim($dir, "/").'/*');
+        if (is_array($structure)) {
+            foreach($structure as $file) {
+                if (is_dir($file))
+                    deleteAll($file,true);
+                else if(is_file($file))
+                    unlink($file);
+            }
+        }
+        if($remove)
+            rmdir($dir);
     }
 
     public function scanResult($code){
