@@ -38,7 +38,7 @@ class MemberController extends Controller
            $code = $this->generateCode();
             $member = new Member();
             $member->code = $code;
-            $member->certificate_no = Str::random(10);
+            $member->certificate_no = 'BD'.Str::random(10);
             $member->birth_certificate_no = $request->birth_certificate_no;
             $member->nid = $request->nid;
             $member->passport = $request->passport;
