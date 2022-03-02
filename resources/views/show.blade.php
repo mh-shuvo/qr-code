@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="col-6" style="border: 1px dashed rgb(222, 226, 230);">
                                             <div class="cert-verify-content-div" style="font-size: 13px; text-align: left; padding: 5px; overflow-wrap: break-word;">
-                                                {{$member->certificate_no}}
+                                                BD{{$member->birth_certificate_no}}
                                             </div>
                                         </div>
                                     </div>

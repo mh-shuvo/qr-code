@@ -127,7 +127,7 @@
 
             <tr>
                 <td width="25%" class="text-end">Certificate No: <br> সার্টিফিকেট নং-</td>
-                <td width="25%">{{$member->certificate_no}}</td>
+                <td width="25%">BD{{$member->birth_certificate_no}}</td>
                 <td width="25%" class="text-end">Date of Vaccination(Dose 1): <br>
                 টিকা প্রদানের তারিখ(ডোজ ১)-
                 </td>
