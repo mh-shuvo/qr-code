@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[\App\Http\Controllers\AuthController::class,'showLoginForm'])->name('login');
 Route::post('/login',[\App\Http\Controllers\AuthController::class,'login'])->name('login.submit');
-Route::get('/scan-result/{code}',[\App\Http\Controllers\MemberController::class,'scanResult'])->name('scan');
+Route::get('/verify-online/',[\App\Http\Controllers\MemberController::class,'scanResult'])->name('scan');
 
 Route::group(['middleware'=>'user_middleware'],function (){
     Route::get('/user/dashboard',[\App\Http\Controllers\UserController::class,'index'])->name('user.home');

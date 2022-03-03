@@ -75,7 +75,7 @@ class MemberController extends Controller
         $this->deleteAllFilesofByPath('code/');
 
         $member = Member::where('code',$code)->first();
-        $qrCode = new QrCode2(route('scan',[$member->code]));
+        $qrCode = new QrCode2(route('scan').'?id='.$member->code);
         $output = new Output\Png();
         $data = $output->output($qrCode, 300, [255, 255, 255], [0, 0, 0]);
         $qr_filename = time().'.png';
@@ -112,10 +112,19 @@ class MemberController extends Controller
             rmdir($dir);
     }
 
-    public function scanResult($code){
+    public function scanResult(Request $request){
+        $code = $request->id;
+        if($code == null){
+            return view('invalid');
+        }
         $member = Member::where('code',$code)->first();
-        $page = 'result';
-        return view('show',compact('member','page'));
+        if(!empty($member)){
+            $page = 'result';
+            return view('show',compact('member','page'));
+        }else{
+            return view('invalid');
+        }
+
     }
     public function memberEdit($code){
         $member = Member::where('code',$code)->first();
