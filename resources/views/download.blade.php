@@ -54,7 +54,8 @@
         .InformationTable tr th, .InformationTable tr td{
             border-collapse: collapse;
             border: 1px;
-            border-style: dashed;
+            border-bottom-style: dashed;
+            border-top-style: dashed;ed;
             border-color: #e3dcdc;
             padding: 10px;
         }
@@ -158,8 +159,8 @@
             <tr>
                 <td width="25%" class="text-end">Name: <br> নামঃ</td>
                 <td width="25%">  {{$member->name}}</td>
-                <td width="30%" class="text-end" rowspan="2">Vaccination Center: <br>টিকা প্রদানের কেন্দ্রঃ</td>
-                <td width="20%" rowspan="2"> {{!empty($member->vaccination_center) ? $member->vaccination_center : "N/A"}}</td>
+                <td width="10%" class="text-end" rowspan="2">Vaccination Center: <br>টিকা প্রদানের কেন্দ্রঃ</td>
+                <td width="40%" rowspan="2"> {{!empty($member->vaccination_center) ? $member->vaccination_center : "N/A"}}</td>
             </tr>
 
             <tr>
@@ -175,14 +176,14 @@
             </tr>
 
             <tr>
-                <td width="100%" class="text-center" colspan="4" style="border-bottom: 1px solid #e3dcdc;border-left: 1px solid #e3dcdc;border-right: 1px solid #e3dcdc;">
+                <td width="100%" class="text-center" colspan="4" style="border-bottom: 1px solid #e3dcdc;">
                     To verify this certificate please visit www.surokkha.gov.bd/verify or scan the QR code. <br>
                     ( এই সার্টিফিকেটটি যাচাই করার জন্য www.surokkha.gov.bd/verify ভিজিট অথবা QR কোডটি স্ক্যান করুন )
                 </td>
             </tr>
 
             <tr>
-                <td width="100%" class="text-center" colspan="4" style="border: 1px solid #e3dcdc;">
+                <td width="100%" class="text-center" colspan="4" style="">
                     For any further assistance, please visit www.dghs.gov.bd or e-mail: info@dghs.gov.bd <br>
                     (প্রয়োজনে www.dghs.gov.bd ওয়েবসাইটে ভিজিট করুন অথবা ইমেইল করুনঃ info@dghs.gov.bd)
                 </td>

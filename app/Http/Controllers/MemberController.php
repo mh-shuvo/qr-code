@@ -38,7 +38,7 @@ class MemberController extends Controller
            $code = $this->generateCode();
             $member = new Member();
             $member->code = $code;
-            $member->certificate_no = 'BD'.Str::random(10);
+            $member->certificate_no = 'BD'.Str::random(12);
             $member->birth_certificate_no = $request->birth_certificate_no;
             $member->nid = $request->nid;
             $member->passport = $request->passport;
@@ -47,9 +47,9 @@ class MemberController extends Controller
             $member->dob = date('d-m-Y',strtotime($request->dob));
             $member->gender = $request->gender;
             $member->date_of_dose_1 = date('d-m-Y',strtotime($request->date_of_dose_1));
-            $member->name_of_dose_1 = $request->name_of_dose_1;
+            $member->name_of_dose_1 = $request->name_of_dose_1 == Member::VACCINE_OTHER ? $request->name_of_dose_1_other : $request->name_of_dose_1;
             $member->date_of_dose_2 = date('d-m-Y',strtotime($request->date_of_dose_2));
-            $member->name_of_dose_2 = $request->name_of_dose_2;
+            $member->name_of_dose_2 = $request->name_of_dose_2 == Member::VACCINE_OTHER ? $request->name_of_dose_2_other : $request->name_of_dose_2;
             $member->vaccination_center = $request->vaccination_center;
             $member->vaccinated_by = $request->vaccinated_by;
             $member->total_dose = $request->total_dose;
@@ -155,9 +155,9 @@ class MemberController extends Controller
             $member->dob = date('d-m-Y',strtotime($request->dob));
             $member->gender = $request->gender;
             $member->date_of_dose_1 = date('d-m-Y',strtotime($request->date_of_dose_1));
-            $member->name_of_dose_1 = $request->name_of_dose_1;
+            $member->name_of_dose_1 = $request->name_of_dose_1 == Member::VACCINE_OTHER ? $request->name_of_dose_1_other : $request->name_of_dose_1;
             $member->date_of_dose_2 = date('d-m-Y',strtotime($request->date_of_dose_2));
-            $member->name_of_dose_2 = $request->name_of_dose_2;
+            $member->name_of_dose_2 = $request->name_of_dose_2 == Member::VACCINE_OTHER ? $request->name_of_dose_2_other : $request->name_of_dose_2;
             $member->vaccination_center = $request->vaccination_center;
             $member->vaccinated_by = $request->vaccinated_by;
             $member->total_dose = $request->total_dose;

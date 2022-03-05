@@ -12,4 +12,8 @@ class Member extends Model
     public function user(){
         return $this->hasOne(User::class,'id','created_by');
     }
+
+    const VACCINE_NAME_1 ='Pfizer (Pfizer-BioNTech)';
+    const VACCINE_NAME_2 ='Moderna (Moderna)';
+    const VACCINE_OTHER ='Other';
 }

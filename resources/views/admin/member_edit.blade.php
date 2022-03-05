@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="col-sm-12 pt-3">
                                         <label for="nationality">Nationality <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="nationality" name="nationality" placeholder="Nationality" value="{{$member->nationality}}">
+                                        <input type="text" class="form-control" id="nationality" name="nationality" placeholder="Nationality" readonly value="Bangladeshi">
                                         @error('nationality')
                                         <span class="text-danger">{{$message}}</span>
                                         @enderror
@@ -93,11 +93,19 @@
                                         @enderror
                                     </div>
                                     <div class="col-sm-12 pt-3">
-                                        <label for="name_of_dose_1">Name of Vaccine (Dose 1)</label>
-                                        <input type="text" class="form-control" id="name_of_dose_1" name="name_of_dose_1" placeholder="Name of Vaccine (Dose 1)" value="{{$member->name_of_dose_1}}">
-                                        @error('name_of_dose_1')
-                                        <span class="text-danger">{{$message}}</span>
-                                        @enderror
+                                        <div class="col-sm-12 pt-3">
+                                            <label for="name_of_dose_1">Name of Vaccine (Dose 1)</label>
+                                            <select name="name_of_dose_1" id="name_of_dose_1" class="form-control changeVaccine">
+                                                <option value="">Select One</option>
+                                                <option {{$member->name_of_dose_1 == \App\Models\Member::VACCINE_NAME_1 ? 'selected':''}} value="{{\App\Models\Member::VACCINE_NAME_1}}">{{\App\Models\Member::VACCINE_NAME_1}}</option>
+                                                <option {{$member->name_of_dose_1 == \App\Models\Member::VACCINE_NAME_2 ? 'selected':''}} value="{{\App\Models\Member::VACCINE_NAME_2}}">{{\App\Models\Member::VACCINE_NAME_2}}</option>
+                                                <option {{($member->name_of_dose_1 != \App\Models\Member::VACCINE_NAME_1 && $member->name_of_dose_1 != \App\Models\Member::VACCINE_NAME_2 && $member->name_of_dose_1 != null) ? 'selected':''}} value="{{\App\Models\Member::VACCINE_OTHER}}">{{\App\Models\Member::VACCINE_OTHER}}</option>
+                                            </select>
+                                            <input type="text" class="form-control {{($member->name_of_dose_1 == \App\Models\Member::VACCINE_NAME_1 || $member->name_of_dose_1 == \App\Models\Member::VACCINE_NAME_2 || $member->name_of_dose_1 == null) ? 'd-none':''}}" id="name_of_dose_1_other" name="name_of_dose_1_other" placeholder="Name of Vaccine (Dose 1)" value="{{$member->name_of_dose_1}}">
+                                            @error('name_of_dose_1')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="col-sm-12 pt-3">
                                         <label for="date_of_dose_2">Date of Vaccination (Dose 2)</label>
@@ -108,7 +116,13 @@
                                     </div>
                                     <div class="col-sm-12 pt-3">
                                         <label for="name_of_dose_2">Name of Vaccine (Dose 2)</label>
-                                        <input type="text" class="form-control" id="name_of_dose_2" name="name_of_dose_2" placeholder="Name of Vaccine (Dose 2)" value="{{$member->date_of_dose_2}}">
+                                        <select name="name_of_dose_2" id="name_of_dose_2" class="form-control changeVaccine">
+                                            <option value="">Select One</option>
+                                            <option {{$member->name_of_dose_2 == \App\Models\Member::VACCINE_NAME_1 ? 'selected':''}} value="{{\App\Models\Member::VACCINE_NAME_1}}">{{\App\Models\Member::VACCINE_NAME_1}}</option>
+                                            <option {{$member->name_of_dose_2 == \App\Models\Member::VACCINE_NAME_2 ? 'selected':''}} value="{{\App\Models\Member::VACCINE_NAME_2}}">{{\App\Models\Member::VACCINE_NAME_2}}</option>
+                                            <option {{($member->name_of_dose_2 != \App\Models\Member::VACCINE_NAME_1 && $member->name_of_dose_2 != \App\Models\Member::VACCINE_NAME_2 && $member->name_of_dose_2 != null) ? 'selected':''}} value="{{\App\Models\Member::VACCINE_OTHER}}">{{\App\Models\Member::VACCINE_OTHER}}</option>
+                                        </select>
+                                        <input type="text" class="form-control {{($member->name_of_dose_2 == \App\Models\Member::VACCINE_NAME_1 || $member->name_of_dose_2 == \App\Models\Member::VACCINE_NAME_2 || $member->name_of_dose_2 == null) ? 'd-none':''}}" id="name_of_dose_2_other" name="name_of_dose_2_other" placeholder="Name of Vaccine (Dose 2)" value="{{$member->name_of_dose_2}}">
                                         @error('name_of_dose_2')
                                         <span class="text-danger">{{$message}}</span>
                                         @enderror
@@ -122,7 +136,8 @@
                                     </div>
                                     <div class="col-sm-12 pt-3">
                                         <label for="vaccinated_by">Vaccinated By</label>
-                                        <input type="text" class="form-control" id="vaccinated_by" name="vaccinated_by" placeholder="Vaccinated By" value="{{$member->vaccinated_by}}">
+                                        <input type="text" class="form-control" id="vaccinated_by" name="vaccinated_by" placeholder="Vaccinated By" readonly value="Directorate General of
+Health Services (DGHS)">
                                         @error('vaccinated_by')
                                         <span class="text-danger">{{$message}}</span>
                                         @enderror
@@ -159,6 +174,15 @@
             $('.datepicker').datepicker({
                 autoclose:true
             });
+        });
+        $(document).on('change','.changeVaccine',function () {
+            let id = $(this).attr('id');
+            let value = $(this).val() || 0;
+            $("#"+id+"_other").addClass('d-none');
+
+            if(value == "{{\App\Models\Member::VACCINE_OTHER}}"){
+                $("#"+id+"_other").removeClass('d-none');
+            }
         });
 
     </script>
