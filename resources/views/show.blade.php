@@ -12,11 +12,9 @@
             <div class="col-md-12 p-sm-0">
                 <div class="d-flex justify-content-between">
                     <div class="col-md-12 p-sm-0">
-                        @if(!isset($page))
                         <div class="text-end mb-2 no-print">
                             <a class="btn btn-sm btn-success" href="{{route('print',[$member->code])}}">Print</a>
                         </div>
-                        @endif
                         <div style="border: 1px solid rgb(222, 226, 230);">
                             <div class="row cert-header-print m-0 mt-2">
                                 <div class="col-md-3 text-end d-none d-md-block d-print-inline-block">
