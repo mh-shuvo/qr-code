@@ -261,7 +261,15 @@
                         <tr style="background: green;color: white">
                             <td style="text-align: right;color: white">Vaccine Name</td>
                             <td style="text-align: left;color: white">
-                                {{!empty($member->name_of_dose_1) ? $member->name_of_dose_1 : ""}} {{!empty($member->name_of_dose_1) ? " - ".$member->name_of_dose_1 : ""}}
+                                @if(!empty($member->name_of_dose_1))
+                                    @if($member->name_of_dose_1 == \App\Models\Member::VACCINE_NAME_1)
+                                        Pfizer (Pfizer- <br>
+                                        BioNTech)
+                                    @else
+                                    {{$member->name_of_dose_1}}
+                                    @endif
+
+                                @endif
                             </td>
                         </tr>
                         <tr style="background: green;color: white">
